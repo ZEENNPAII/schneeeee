@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Our Little Sunday Plan — Clarkieee & Schiiin</title>
+
+  <!-- Elegant Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 10% 15%,
+          rgba(255,255,255,.45),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(255,255,255,.35),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #f8dc69,
+          #f4ca43 48%,
+          #e8b72f
+        );
+
+      color: #493515;
+      font-family: 'Montserrat', sans-serif;
+
+      overflow-x: hidden;
+    }
+
+
+    /* =====================================
+       DECORATIVE FLOWERS
+    ===================================== */
+
+    .flower {
+      position: fixed;
+      width: 120px;
+      height: 120px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .8;
+    }
+
+    .flower::before,
+    .flower::after {
+      content: "";
+      position: absolute;
+      inset: 25px;
+      border-radius: 50%;
+      background: #fff9df;
+
+      box-shadow:
+        0 -35px 0 #fff9df,
+        35px 0 0 #fff9df,
+        0 35px 0 #fff9df,
+        -35px 0 0 #fff9df,
+        25px -25px 0 #fff9df,
+        25px 25px 0 #fff9df,
+        -25px 25px 0 #fff9df,
+        -25px -25px 0 #fff9df;
+    }
+
+    .flower::after {
+      inset: 47px;
+      background: #d59b1d;
+      box-shadow: none;
+    }
+
+    .flower-1 {
+      top: -20px;
+      left: -30px;
+      transform: rotate(-20deg);
+    }
+
+    .flower-2 {
+      right: -30px;
+      top: 70px;
+      transform: scale(.75) rotate(25deg);
+    }
+
+    .flower-3 {
+      bottom: -30px;
+      left: -20px;
+      transform: scale(.9) rotate(15deg);
+    }
+
+    .flower-4 {
+      bottom: 20px;
+      right: -35px;
+      transform: scale(.65) rotate(-20deg);
+    }
+
+
+    /* =====================================
+       PAGE
+    ===================================== */
+
+    .page {
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 50px 20px;
+
+      position: relative;
+    }
+
+
+    /* =====================================
+       CARD
+    ===================================== */
+
+    .card {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      max-width: 800px;
+
+      background: rgba(255, 251, 232, .96);
+
+      border: 1px solid rgba(160, 111, 19, .35);
+
+      box-shadow:
+        0 25px 70px rgba(87, 57, 5, .28),
+        0 5px 20px rgba(87, 57, 5, .12);
+
+      padding: 12px;
+
+      animation: appear 1.1s ease forwards;
+    }
+
+    .card-inner {
+      border: 1px solid #d2a432;
+
+      padding: 55px 55px 60px;
+
+      text-align: center;
+
+      position: relative;
+    }
+
+    .card-inner::before,
+    .card-inner::after {
+      content: "✦";
+
+      position: absolute;
+
+      font-size: 22px;
+
+      color: #c18b17;
+    }
+
+    .card-inner::before {
+      top: 18px;
+      left: 20px;
+    }
+
+    .card-inner::after {
+      bottom: 18px;
+      right: 20px;
+    }
+
+
+    /* =====================================
+       HEADER
+    ===================================== */
+
+    .eyebrow {
+      font-size: 10px;
+
+      letter-spacing: 5px;
+
+      text-transform: uppercase;
+
+      color: #9a701a;
+
+      font-weight: 700;
+
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: clamp(48px, 8vw, 76px);
+
+      font-weight: 600;
+
+      line-height: .9;
+
+      color: #5a3d0d;
+
+      margin-bottom: 10px;
+    }
+
+    .names {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 30px;
+
+      font-style: italic;
+
+      color: #8a671f;
+
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      max-width: 560px;
+
+      margin: auto;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 21px;
+
+      line-height: 1.55;
+
+      color: #6d5629;
+    }
+
+
+    /* =====================================
+       DIVIDER
+    ===================================== */
+
+    .divider {
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 27px 0 35px;
+
+      color: #c29427;
+    }
+
+    .divider span {
+      display: block;
+
+      width: 75px;
+
+      height: 1px;
+
+      background: #cba33c;
+    }
+
+
+    /* =====================================
+       DATE
+    ===================================== */
+
+    .date-box {
+      display: inline-block;
+
+      padding: 13px 28px;
+
+      border: 1px solid #d5ad4a;
+
+      background: rgba(247, 216, 111, .18);
+
+      margin-bottom: 38px;
+    }
+
+    .date-box .day {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 30px;
+
+      font-weight: 700;
+
+      color: #5b3e0e;
+    }
+
+    .date-box .date {
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      color: #99721f;
+
+      margin-top: 3px;
+    }
+
+
+    /* =====================================
+       SECTION TITLE
+    ===================================== */
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 32px;
+
+      color: #67470e;
+
+      margin-bottom: 28px;
+    }
+
+
+    /* =====================================
+       TIMELINE
+    ===================================== */
+
+    .timeline {
+      max-width: 570px;
+
+      margin: 0 auto;
+
+      text-align: left;
+
+      position: relative;
+    }
+
+    .timeline-item {
+      display: flex;
+
+      gap: 20px;
+
+      position: relative;
+
+      padding-bottom: 34px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item:not(:last-child)::before {
+      content: "";
+
+      position: absolute;
+
+      left: 19px;
+
+      top: 40px;
+
+      height: calc(100% - 5px);
+
+      width: 1px;
+
+      background: #d5b45d;
+    }
+
+    .timeline-dot {
+      width: 39px;
+      height: 39px;
+
+      min-width: 39px;
+
+      border-radius: 50%;
+
+      border: 1px solid #c79a2c;
+
+      background: #fff9df;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 16px;
+
+      z-index: 2;
+
+      box-shadow:
+        0 3px 8px rgba(122, 88, 20, .12);
+    }
+
+    .timeline-time {
+      font-size: 10px;
+
+      letter-spacing: 2px;
+
+      font-weight: 700;
+
+      color: #a1761b;
+
+      margin-bottom: 3px;
+    }
+
+    .timeline-place {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 25px;
+
+      font-weight: 700;
+
+      color: #533a0d;
+
+      margin-bottom: 4px;
+    }
+
+    .timeline-description {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 17px;
+
+      line-height: 1.45;
+
+      color: #806b3e;
+
+      max-width: 470px;
+    }
+
+
+    /* =====================================
+       LITTLE THOUGHT
+    ===================================== */
+
+    .note {
+      max-width: 570px;
+
+      margin: 42px auto;
+
+      padding: 28px 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(247,216,111,.25),
+          rgba(255,248,210,.6)
+        );
+
+      border: 1px solid rgba(192,148,39,.35);
+
+      position: relative;
+    }
+
+    .note::before {
+      content: "“";
+
+      position: absolute;
+
+      top: 2px;
+      left: 15px;
+
+      font-family: Georgia, serif;
+
+      font-size: 55px;
+
+      color: rgba(180,130,20,.25);
+    }
+
+    .note p {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 22px;
+
+      line-height: 1.55;
+
+      font-style: italic;
+
+      color: #654b19;
+    }
+
+
+    /* =====================================
+       DINNER
+    ===================================== */
+
+    .dinner {
+      margin-top: 40px;
+
+      padding: 30px 20px;
+
+      border-top: 1px solid #d6b65d;
+
+      border-bottom: 1px solid #d6b65d;
+    }
+
+    .dinner-icon {
+      font-size: 30px;
+
+      margin-bottom: 8px;
+    }
+
+    .dinner-label {
+      font-size: 9px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      color: #a1761b;
+
+      font-weight: 700;
+
+      margin-bottom: 5px;
+    }
+
+    .dinner-title {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 34px;
+
+      font-weight: 700;
+
+      color: #583c0c;
+    }
+
+    .dinner-text {
+      margin-top: 10px;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 19px;
+
+      line-height: 1.5;
+
+      color: #7d6431;
+    }
+
+
+    /* =====================================
+       CLOSING
+    ===================================== */
+
+    .closing {
+      margin-top: 42px;
+    }
+
+    .closing-main {
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 28px;
+
+      color: #63460f;
+
+      margin-bottom: 10px;
+    }
+
+    .closing-text {
+      max-width: 520px;
+
+      margin: auto;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 19px;
+
+      line-height: 1.55;
+
+      color: #806a3b;
+    }
+
+    .heart {
+      display: inline-block;
+
+      margin-top: 18px;
+
+      font-size: 26px;
+
+      color: #a66b16;
+
+      animation: heartbeat 1.7s infinite;
+    }
+
+
+    /* =====================================
+       FOOTER
+    ===================================== */
+
+    .footer {
+      margin-top: 35px;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 18px;
+
+      font-style: italic;
+
+      color: #8a6d31;
+    }
+
+    .signature {
+      margin-top: 7px;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 27px;
+
+      font-weight: 600;
+
+      color: #593d0e;
+    }
+
+
+    /* =====================================
+       ANIMATIONS
+    ===================================== */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(25px)
+          scale(.98);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+
+    /* =====================================
+       MOBILE
+    ===================================== */
+
+    @media (max-width: 650px) {
+
+      .page {
+        padding: 20px 12px;
+      }
+
+      .card {
+        padding: 7px;
+      }
+
+      .card-inner {
+        padding: 42px 20px 45px;
+      }
+
+      h1 {
+        font-size: 55px;
+      }
+
+      .names {
+        font-size: 25px;
+      }
+
+      .intro {
+        font-size: 19px;
+      }
+
+      .timeline-place {
+        font-size: 22px;
+      }
+
+      .timeline-description {
+        font-size: 16px;
+      }
+
+      .note p {
+        font-size: 20px;
+      }
+
+      .dinner-text {
+        font-size: 18px;
+      }
+
+      .flower {
+        transform: scale(.65);
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- Decorative Flowers -->
+
+  <div class="flower flower-1"></div>
+  <div class="flower flower-2"></div>
+  <div class="flower flower-3"></div>
+  <div class="flower flower-4"></div>
+
+
+  <main class="page">
+
+    <section class="card">
+
+      <div class="card-inner">
+
+
+        <!-- HEADER -->
+
+        <div class="eyebrow">
+          A Little Recap
+        </div>
+
+        <h1>
+          Our Little<br>
+          Sunday Plan
+        </h1>
+
+        <div class="names">
+          Clarkieee & Schiiin 💛
+        </div>
+
+        <p class="intro">
+
+          Sooo, since we already talked about this earlier,
+          here's a little recap of our plan for Sunday. 🤭
+
+          <br><br>
+
+          Nothing too fancy. Nothing complicated.
+
+          Just a simple date, a little time together,
+          and hopefully a day we'll both enjoy.
+
+        </p>
+
+
+        <!-- DIVIDER -->
+
+        <div class="divider">
+
+          <span></span>
+
+          ✦
+
+          <span></span>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="date-box">
+
+          <div class="day">
+            Sunday
+          </div>
+
+          <div class="date">
+            September 6, 2026
+          </div>
+
+        </div>
+
+
+        <!-- ITINERARY -->
+
+        <h2 class="section-title">
+          The Plan
+        </h2>
+
+
+        <div class="timeline">
+
+
+          <!-- 4:00 PM -->
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot">
+              🕓
+            </div>
+
+            <div>
+
+              <div class="timeline-time">
+                4:00 PM SHARP
+              </div>
+
+              <div class="timeline-place">
+                Meet Up
+              </div>
+
+              <div class="timeline-description">
+
+                Let's meet at the front of
+                <strong>Cebu City Hall</strong>.
+
+                <br>
+
+                If I end up staying somewhere else,
+                I'll update you beforehand.
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- 4:30 MASS -->
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot">
+              ⛪
+            </div>
+
+            <div>
+
+              <div class="timeline-time">
+                4:30 PM
+              </div>
+
+              <div class="timeline-place">
+                Bisaya Mass
+              </div>
+
+              <div class="timeline-description">
+
+                We'll head to the
+                <strong>Basilica Minore del Santo Niño</strong>
+                and attend the Bisaya Mass together.
+
+                <br><br>
+
+                A little quiet time, a little prayer,
+                and a good way to start our Sunday.
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- DINNER -->
+
+          <div class="timeline-item">
+
+            <div class="timeline-dot">
+              🍽️
+            </div>
+
+            <div>
+
+              <div class="timeline-time">
+                AFTER MASS
+              </div>
+
+              <div class="timeline-place">
+                Dinner
+              </div>
+
+              <div class="timeline-description">
+
+                After the mass, we'll head to
+                <strong>Puso Village</strong>.
+
+                <br><br>
+
+                A little time to relax, eat, talk,
+                and enjoy the rest of the evening together.
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- LITTLE THOUGHT -->
+
+        <div class="note">
+
+          <p>
+
+            Sometimes the simplest plans are the ones
+            that become the nicest memories.
+
+            <br><br>
+
+            No big expectations.
+
+            Just good food, good conversation,
+            and good company.
+
+          </p>
+
+        </div>
+
+
+        <!-- DINNER HIGHLIGHT -->
+
+        <div class="dinner">
+
+          <div class="dinner-icon">
+            🍽️
+          </div>
+
+          <div class="dinner-label">
+            And after the mass...
+          </div>
+
+          <div class="dinner-title">
+            Dinner at Puso Village
+          </div>
+
+          <div class="dinner-text">
+            Good food, good conversation, and good company.
+            with the special person that i have right now 💛
+          </div>
+
+        </div>
+
+
+        <!-- CLOSING -->
+
+        <div class="closing">
+
+          <div class="closing-main">
+            So that's our little Sunday plan. 🌼
+          </div>
+
+          <div class="closing-text">
+
+            Nothing extravagant.
+
+            Just Clarkieee and Schiiin,
+            spending a little time together,
+            enjoying the afternoon,
+            and seeing where the evening takes us.
+
+            <br><br>
+
+            Looking forward to it.
+
+          </div>
+
+          <div class="heart">
+            ♥
+          </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+          See you Sunday.
+
+          <br>
+
+          <strong>4:00 PM sharp.</strong>
+
+        </div>
+
+        <div class="signature">
+          — Clarkieee 💛
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

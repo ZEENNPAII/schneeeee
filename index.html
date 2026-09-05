@@ -613,6 +613,32 @@
       color: #593d0e;
     }
 
+    .music-toggle {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 5;
+      width: 48px;
+      height: 48px;
+      border: 1px solid #c79a2c;
+      border-radius: 50%;
+      background: #fff9df;
+      color: #67470e;
+      font-size: 19px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(87, 57, 5, .2);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .music-toggle:hover {
+      transform: translateY(-2px);
+      background: #fff3bf;
+    }
+
+    .music-toggle.is-playing {
+      background: #f7d86f;
+    }
+
 
     /* =====================================
        ANIMATIONS
@@ -697,6 +723,11 @@
         transform: scale(.65);
       }
 
+      .music-toggle {
+        right: 15px;
+        bottom: 15px;
+      }
+
     }
 
   </style>
@@ -712,6 +743,10 @@
   <div class="flower flower-2"></div>
   <div class="flower flower-3"></div>
   <div class="flower flower-4"></div>
+
+  <button class="music-toggle" id="music-toggle" type="button" aria-label="Play background music" aria-pressed="false">
+    ♫
+  </button>
 
 
   <main class="page">
@@ -983,6 +1018,10 @@
 
           <strong>4:00 PM sharp.</strong>
 
+          <br><br>
+
+          Sleep well. Amping sa biyahi nimo ron. 🌙
+
         </div>
 
         <div class="signature">
@@ -995,6 +1034,56 @@
     </section>
 
   </main>
+
+  <script>
+    const musicToggle = document.querySelector('#music-toggle');
+    let audioContext;
+    let musicTimer;
+    let noteIndex = 0;
+
+    const melody = [261.63, 329.63, 392, 329.63, 293.66, 349.23, 440, 349.23];
+
+    function playNote() {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      const now = audioContext.currentTime;
+
+      oscillator.type = 'sine';
+      oscillator.frequency.value = melody[noteIndex % melody.length];
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(.045, now + .08);
+      gain.gain.exponentialRampToValueAtTime(.001, now + 1.7);
+      oscillator.connect(gain).connect(audioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 1.8);
+      noteIndex += 1;
+    }
+
+    musicToggle.addEventListener('click', async () => {
+      if (!audioContext) {
+        audioContext = new AudioContext();
+      }
+
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+
+      if (musicTimer) {
+        clearInterval(musicTimer);
+        musicTimer = null;
+        musicToggle.classList.remove('is-playing');
+        musicToggle.setAttribute('aria-label', 'Play background music');
+        musicToggle.setAttribute('aria-pressed', 'false');
+        return;
+      }
+
+      playNote();
+      musicTimer = setInterval(playNote, 1800);
+      musicToggle.classList.add('is-playing');
+      musicToggle.setAttribute('aria-label', 'Pause background music');
+      musicToggle.setAttribute('aria-pressed', 'true');
+    });
+  </script>
 
 </body>
 </html>
